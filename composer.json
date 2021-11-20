@@ -1,0 +1,25 @@
+{
+    "name": "ryosuzaki/group-system-sample-package",
+    "description": "Laravel GroupSystem パッケージ開発 Sample",
+    "require": {
+        "php": "^7.2"
+    },
+    "autoload": {
+        "psr-4": {"GroupSystem\\Sample\\": "src/"}
+    },
+    "homepage": "https://github.com/ryosuzaki/group-system-sample-package",
+    "authors": [
+        {
+            "name": "ryosuzaki",
+            "email": "email@email",
+            "role": "Developer"
+        }
+    ],
+    "extra": {
+        "laravel": {
+            "providers": [
+                "GroupSystem\\Sample\\SampleServiceProvider"
+            ]
+        }
+    }
+}
