@@ -1,13 +1,13 @@
 {
-    "name": "ryosuzaki/group-system-sample-package",
-    "description": "Laravel GroupSystem パッケージ開発 Sample",
+    "name": "ryosuzaki/group-system-niss",
+    "description": "Laravel GroupSystem NISS",
     "require": {
         "php": "^7.2"
     },
     "autoload": {
-        "psr-4": {"GroupSystem\\Sample\\": "src/"}
+        "psr-4": {"GroupSystem\\Niss\\": "src/"}
     },
-    "homepage": "https://github.com/ryosuzaki/group-system-sample-package",
+    "homepage": "https://github.com/ryosuzaki/group-system-niss",
     "authors": [
         {
             "name": "ryosuzaki",
@@ -18,7 +18,7 @@
     "extra": {
         "laravel": {
             "providers": [
-                "GroupSystem\\Sample\\SampleServiceProvider"
+                "GroupSystem\\Niss\\NissServiceProvider"
             ]
         }
     }

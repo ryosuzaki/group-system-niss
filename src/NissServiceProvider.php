@@ -1,10 +1,10 @@
 <?php
 
-namespace GroupSystem\Sample;
+namespace GroupSystem\Niss;
 
 use Illuminate\Support\ServiceProvider;
 
-class SampleServiceProvider extends ServiceProvider
+class NissServiceProvider extends ServiceProvider
 {
     public function boot()
     {
@@ -18,29 +18,28 @@ class SampleServiceProvider extends ServiceProvider
         
         //configを公開
         $this->publishes([
-            __DIR__.'/../config/sample.php' => config_path('group_system_sample.php'),
+            __DIR__.'/../config/group_system_niss.php' => config_path('group_system_niss.php'),
         ]);
 
         //routesをロード
-        $this->loadRoutesFrom(__DIR__.'/../routes/sample.php');
+        $this->loadRoutesFrom(__DIR__.'/../routes/niss.php');
 
         //migrationsをロード
         $this->loadMigrationsFrom(__DIR__.'/../migrations');
 
         //viewsをロード
-        $this->loadViewsFrom(__DIR__.'/../views', 'group_system_sample');
-        //viewsを公開
-        $this->publishes([
-            __DIR__.'/../views' => resource_path('views/vendor/group_system/sample'),
-        ]);
-        
+        $this->loadViewsFrom(__DIR__.'/../views', 'group_system_niss');
     }
 
     public function register()
     {
         //configをマージ
         $this->mergeConfigFrom(
-            __DIR__.'/../config/sample.php', 'group_system_sample'
+            __DIR__.'/../config/group_system_niss.php', 'group_system_niss'
+        );
+        //
+        $this->mergeConfigFrom(
+            __DIR__.'/../config/merge_to_group_system.php', 'group_system'
         );
     }
 }
