@@ -6,6 +6,8 @@ use App\Http\Controllers\Controller;
 
 use GroupSystem\Niss\Models\Evacuation;
 
+use App\Models\Info\InfoBase;
+
 class EvacuationController extends Controller
 {   
     //
@@ -19,18 +21,19 @@ class EvacuationController extends Controller
     /**
      * 
      */
-    public function update(Request $request){
-        $user=Auth::user();
+    public function update(Request $request,InfoBase $info_base){
         $validator = Validator::make($request->all(),[
-            'name' => ['required', 'string', 'max:255'],
-            'email' => ['required', 'string', 'email', 'max:255',Rule::unique('users','email')->ignore($user)],
+            'evacuation' => ['required', 'string', 'max:255'],
+            'comment' => ['string','max:255'],
         ]);
         if ($validator->fails()) {
             return back()->withErrors($validator)->withInput();
         }
-        $user->fill([
-            'name'=>$request['name'],
-            'email'=>$request['email'],
+        $user=Auth::user();
+        $evacuation=Evacuation::findByUserId($user->id);
+        $evacuation->fill([
+            'evacuation'=>$request['evacuation'],
+            'comment'=>$request['comment'],
         ])->save();
         return redirect()->route('user.show');
     }
@@ -38,5 +41,5 @@ class EvacuationController extends Controller
     /**
      * 
      */
-    
+
 }

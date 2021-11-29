@@ -19,7 +19,7 @@ class CreateNissTable extends Migration
         Schema::create('group_system_niss_health_records', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->timestamps();
-            $table->string('word');
+            $table->unsignedBigInteger('user_id');
         });
 
         /**
@@ -28,11 +28,16 @@ class CreateNissTable extends Migration
         Schema::create('group_system_niss_evacuations', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->timestamps();
-            $table->unsignedBigInteger('user_id');
-            $table->string('rescue');
-            $table->unsignedBigInteger('rescuer_id');
-            $table->string('evacuation');
-            $table->string('comment');
+            $table->unsignedBigInteger('info_base_id')->index();
+            $table->unsignedBigInteger('user_id')->index();
+            $table->string('rescue')->nullable();
+            $table->unsignedBigInteger('rescuer_id')->nullable();
+            $table->string('evacuation')->nullable();
+            $table->text('comment')->nullable();
+
+            $table->foreign('info_base_id')->references('id')->on('info_bases')->onDelete('cascade');
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
+            $table->foreign('rescuer_id')->references('id')->on('users')->onDelete('cascade');
         });
     }
 
