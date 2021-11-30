@@ -61,6 +61,7 @@ return [
                     'default_info'=>['type'=>'','detail'=>''],                    
                     'description'=>'地点情報を表示します',
                     "edit"=>['name'=>'変更','icon'=>'<i class="material-icons">edit</i>'],
+                    'default_viewable'=>false,
                     "only_one"=>true,
                     'view'=>[
                         'show'=>[
@@ -78,7 +79,8 @@ return [
                 
                 "user_info"=>[
                     'default_name'=>'利用者情報',
-                    'default_info'=>['body'=>''],                    
+                    'default_info'=>['body'=>''],
+                    'default_viewable'=>false,                
                     'description'=>'基本の情報表示',
                     "edit"=>['name'=>'変更','icon'=>'<i class="material-icons">edit</i>'],
                     "only_one"=>true,
@@ -93,7 +95,8 @@ return [
                 ],
                 "health_record"=>[
                     "default_name"=>"健康記録",
-                    'default_info'=>['degree'=>'0','color'=>"black",'detail'=>''],                    
+                    'default_info'=>['degree'=>'0','color'=>"black",'detail'=>''], 
+                    'default_viewable'=>false,                   
                     'description'=>'混雑状況を表示します',
                     "edit"=>['name'=>'変更','icon'=>'<i class="material-icons">edit</i>'],
                     "only_one"=>true,
@@ -108,7 +111,8 @@ return [
                 ],
                 "medical_info"=>[
                     'default_name'=>'医療',
-                    'default_info'=>['type'=>'','detail'=>''],                    
+                    'default_info'=>['type'=>'','detail'=>''],
+                    'default_viewable'=>false,                
                     'description'=>'地点情報を表示します',
                     "edit"=>['name'=>'変更','icon'=>'<i class="material-icons">edit</i>'],
                     "only_one"=>true,
@@ -124,7 +128,7 @@ return [
                 "welfare_info"=>[
                     'default_name'=>'福祉',
                     'default_info'=>[],
-                    'default_viewable'=>true,
+                    'default_viewable'=>false,
                     'description'=>'お知らせ',
                     'edit'=>['name'=>'送信','icon'=>'<i class="material-icons">mail_outline</i>'],
                     "only_one"=>true,
@@ -140,7 +144,7 @@ return [
                 "family_info"=>[
                     'default_name'=>'家族情報',
                     'default_info'=>[],
-                    'default_viewable'=>true,
+                    'default_viewable'=>false,
                     'description'=>'お知らせ',
                     'edit'=>['name'=>'送信','icon'=>'<i class="material-icons">mail_outline</i>'],
                     "only_one"=>true,
@@ -159,7 +163,7 @@ return [
                 "health_record"=>[
                     'default_name'=>'健康記録',
                     'default_info'=>[],
-                    'default_viewable'=>true,
+                    'default_viewable'=>false,
                     'description'=>'お知らせ',
                     'edit'=>false,
                     "only_one"=>true,
@@ -172,7 +176,7 @@ return [
                 "rescue"=>[
                     'default_name'=>'救助',
                     'default_info'=>[],
-                    'default_viewable'=>true,
+                    'default_viewable'=>false,
                     'description'=>'お知らせ',
                     'edit'=>false,
                     "only_one"=>true,
