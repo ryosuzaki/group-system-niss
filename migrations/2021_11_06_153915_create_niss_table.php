@@ -28,16 +28,28 @@ class CreateNissTable extends Migration
         Schema::create('group_system_niss_evacuations', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->timestamps();
-            $table->unsignedBigInteger('info_base_id')->index();
+            $table->unsignedBigInteger('info_id')->index();
             $table->unsignedBigInteger('user_id')->index();
-            $table->string('rescue')->nullable();
-            $table->unsignedBigInteger('rescuer_id')->nullable();
             $table->string('evacuation')->nullable();
             $table->text('comment')->nullable();
 
-            $table->foreign('info_base_id')->references('id')->on('info_bases')->onDelete('cascade');
+            $table->foreign('info_id')->references('id')->on('infos')->onDelete('cascade');
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
-            $table->foreign('rescuer_id')->references('id')->on('users')->onDelete('cascade');
+        });
+
+        /**
+         * 
+         */
+        Schema::create('group_system_niss_rescues', function (Blueprint $table) {
+            $table->bigIncrements('id');
+            $table->timestamps();
+            $table->unsignedBigInteger('info_id')->index();
+            $table->unsignedBigInteger('user_id')->index();
+            $table->string('rescue')->nullable();
+            $table->unsignedBigInteger('rescuer_id')->nullable();
+
+            $table->foreign('info_id')->references('id')->on('infos')->onDelete('cascade');
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
         });
     }
 
@@ -50,5 +62,6 @@ class CreateNissTable extends Migration
     {
         Schema::dropIfExists('group_system_niss_health_records');
         Schema::dropIfExists('group_system_niss_evacuations');
+        Schema::dropIfExists('group_system_niss_rescues');
     }
 }

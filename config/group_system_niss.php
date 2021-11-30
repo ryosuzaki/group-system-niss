@@ -16,15 +16,15 @@ return [
         'rescued'=>'救助完了',
     ],
 
-    /*
+    
     "group_types"=>[
         'nursing_home'=>[
             "name"=> "介護施設",
             "initial_info"=>[
-                "niss/evacuation",
+                "niss/rescue",
                 "niss/health_record",
             ],
-            "available_user_info"=>[
+            "viewable_user_info"=>[
                 "niss/evacuation",
                 "niss/user_info",
                 "niss/health_record",
@@ -36,17 +36,19 @@ return [
                 "name"=>"管理者",
             ],
             "permission"=>[
-                'group_info_bases'=>true,
+                'group_infos'=>true,
                 'group_roles'=>true,
             ],
             "view"=>[
                 "show"=>[
                     "path"=>"group_system_niss::nursing_home.show",
                 ],
+                "create"=>[
+                    "path"=>"group_system_niss::nursing_home.create",
+                ],
             ],
         ],
     ],
-    */
     
     /**
      * 
@@ -55,10 +57,10 @@ return [
         "niss"=>[
             User::class=>[
                 "evacuation"=>[
-                    'default_name'=>'避難状況',
+                    'default_name'=>'避難',
                     'default_info'=>['type'=>'','detail'=>''],                    
                     'description'=>'地点情報を表示します',
-                    "default_edit"=>['name'=>'変更','icon'=>'<i class="material-icons">edit</i>'],
+                    "edit"=>['name'=>'変更','icon'=>'<i class="material-icons">edit</i>'],
                     "only_one"=>true,
                     'view'=>[
                         'show'=>[
@@ -73,12 +75,12 @@ return [
                         "function"=>"infoConstructor",
                     ],
                 ],
-                /*
+                
                 "user_info"=>[
                     'default_name'=>'利用者情報',
                     'default_info'=>['body'=>''],                    
                     'description'=>'基本の情報表示',
-                    "default_edit"=>['name'=>'変更','icon'=>'<i class="material-icons">edit</i>'],
+                    "edit"=>['name'=>'変更','icon'=>'<i class="material-icons">edit</i>'],
                     "only_one"=>true,
                     'view'=>[
                         'show'=>[
@@ -93,7 +95,7 @@ return [
                     "default_name"=>"健康記録",
                     'default_info'=>['degree'=>'0','color'=>"black",'detail'=>''],                    
                     'description'=>'混雑状況を表示します',
-                    "default_edit"=>['name'=>'変更','icon'=>'<i class="material-icons">edit</i>'],
+                    "edit"=>['name'=>'変更','icon'=>'<i class="material-icons">edit</i>'],
                     "only_one"=>true,
                     'view'=>[
                         'show'=>[
@@ -108,7 +110,7 @@ return [
                     'default_name'=>'医療',
                     'default_info'=>['type'=>'','detail'=>''],                    
                     'description'=>'地点情報を表示します',
-                    "default_edit"=>['name'=>'変更','icon'=>'<i class="material-icons">edit</i>'],
+                    "edit"=>['name'=>'変更','icon'=>'<i class="material-icons">edit</i>'],
                     "only_one"=>true,
                     'view'=>[
                         'show'=>[
@@ -124,7 +126,7 @@ return [
                     'default_info'=>[],
                     'default_viewable'=>true,
                     'description'=>'お知らせ',
-                    'default_edit'=>['name'=>'送信','icon'=>'<i class="material-icons">mail_outline</i>'],
+                    'edit'=>['name'=>'送信','icon'=>'<i class="material-icons">mail_outline</i>'],
                     "only_one"=>true,
                     'view'=>[
                         'show'=>[
@@ -140,7 +142,7 @@ return [
                     'default_info'=>[],
                     'default_viewable'=>true,
                     'description'=>'お知らせ',
-                    'default_edit'=>['name'=>'送信','icon'=>'<i class="material-icons">mail_outline</i>'],
+                    'edit'=>['name'=>'送信','icon'=>'<i class="material-icons">mail_outline</i>'],
                     "only_one"=>true,
                     'view'=>[
                         'show'=>[
@@ -150,17 +152,16 @@ return [
                             'path'=>'group_system_niss::user.family_info.edit',
                         ],
                     ],
-                ],*/
+                ],
             ],
-            /*
+            
             Group::class=>[
-                
                 "health_record"=>[
                     'default_name'=>'健康記録',
                     'default_info'=>[],
                     'default_viewable'=>true,
                     'description'=>'お知らせ',
-                    'default_edit'=>false,
+                    'edit'=>false,
                     "only_one"=>true,
                     'view'=>[
                         'show'=>[
@@ -168,22 +169,22 @@ return [
                         ],
                     ],
                 ],
-                "evacuation"=>[
-                    'default_name'=>'避難状況',
+                "rescue"=>[
+                    'default_name'=>'救助',
                     'default_info'=>[],
                     'default_viewable'=>true,
                     'description'=>'お知らせ',
-                    'default_edit'=>false,
+                    'edit'=>false,
                     "only_one"=>true,
                     'view'=>[
                         'show'=>[
-                            'path'=>'group_system_niss::group.evacuation.show',
+                            'path'=>'group_system_niss::group.rescue.show',
                         ],
                     ],
                 ],
                 
             ],
-            */
+            
         ],
     ],
     
