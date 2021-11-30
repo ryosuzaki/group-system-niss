@@ -11,7 +11,7 @@
 
 ## 開発環境での使い方
 
-### 1. group-systemをクローン
+### 1. group-systemを動くようにする
 https://github.com/ryosuzaki/group_system
 
 ### 2. packagesフォルダを作る
