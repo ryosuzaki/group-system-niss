@@ -3,6 +3,7 @@
 use App\Models\Group\Group;
 use App\User;
 use GroupSystem\Niss\Models\Evacuation;
+use GroupSystem\Niss\Models\HealthRecord;
 
 return [
     "name"=>"niss",
@@ -95,9 +96,9 @@ return [
                 ],
                 "health_record"=>[
                     "default_name"=>"健康記録",
-                    'default_info'=>['degree'=>'0','color'=>"black",'detail'=>''], 
+                    'default_info'=>['not_use_items'=>[]], 
                     'default_viewable'=>false,                   
-                    'description'=>'混雑状況を表示します',
+                    'description'=>'健康記録',
                     "edit"=>['name'=>'変更','icon'=>'<i class="material-icons">edit</i>'],
                     "only_one"=>true,
                     'view'=>[
@@ -107,6 +108,10 @@ return [
                         'edit'=>[
                             'path'=>'group_system_niss::user.health_record.edit',
                         ],
+                    ],
+                    "constructor"=>[
+                        "class"=>HealthRecord::class,
+                        "function"=>"infoConstructor",
                     ],
                 ],
                 "medical_info"=>[

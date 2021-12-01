@@ -21,15 +21,25 @@ class Evacuation extends Model
     /**
      * 
      */
-    public static function setUpInfo(Info $info){
+    public static function infoConstructor(Info $info){
         Rescue::create([
-            "user_id"=>$info->model()->id,
+            "user_id"=>$info->model()->first()->id,
             "info_id"=>$info->id,
         ]);
         return self::create([
-            "user_id"=>$info->model()->id,
+            "user_id"=>$info->model()->first()->id,
             "info_id"=>$info->id,
         ]);
+    }
+
+    /**
+     * 
+     */
+    public function update(array $attributes){
+        return $this->fill([
+            'evacuation'=>$request['evacuation'],
+            'comment'=>$request['comment'],
+        ])->save();
     }
 
     /**
@@ -51,5 +61,12 @@ class Evacuation extends Model
      */
     public function user(){
         return $this->belongsTo(User::class);
+    }
+
+    /**
+     * 
+     */
+    public function info(){
+        return $this->belongsTo(Info::class);
     }
 }

@@ -19,7 +19,20 @@ class CreateNissTable extends Migration
         Schema::create('group_system_niss_health_records', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->timestamps();
-            $table->unsignedBigInteger('user_id');
+            $table->unsignedBigInteger('info_id')->index();
+            $table->unsignedBigInteger('user_id')->index();
+            $table->string('feeling')->nullable();
+            $table->string('syokuyoku')->nullable();
+            $table->string('taiju')->nullable();
+            $table->string('otuzi')->nullable();
+            $table->string('taion')->nullable();
+            $table->string('ketuatu_saikou')->nullable();
+            $table->string('ketuatu_saitei')->nullable();
+            $table->string('comment')->nullable();
+            $table->json('warui_bui')->nullable();
+
+            $table->foreign('info_id')->references('id')->on('infos')->onDelete('cascade');
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
         });
 
         /**
