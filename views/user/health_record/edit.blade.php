@@ -4,6 +4,7 @@
     @php
     $record=GroupSystem\Niss\Models\HealthRecord::findByUserId(Auth::id());
     $not_use_items=$info->info["not_use_items"];
+    
     @endphp
 
     <div id="questionnaire_body">
@@ -46,17 +47,17 @@
 
                     <div class="tab-pane @if(in_array('feeling', $not_use_items)) d-none @endif" id="1">
                         <span class="h2">調子</span>
-                        <input type="hidden" name="info[feeling]" value="">
+                        <input type="hidden" name="feeling" value="">
                         <div class="form-check">
-                            <input type="radio" name="info[feeling]" id = "tyousi_yoi" value = "良い" class="form-check-input" @if($info['feeling']==="良い") checked @endif>
+                            <input type="radio" name="feeling" id = "tyousi_yoi" value = "良い" class="form-check-input" @if($record->feeling==="良い") checked @endif>
                             <label for = "tyousi_yoi"  class="btn btn-outline-primary  btn-block check"><img src="{{asset('img/health-questionnaire/mark_face_laugh.png')}}"><p class="h3 text-dark">よい</p></label>
                         </div>
                         <div class="form-check">
-                            <input type="radio" name="info[feeling]" id = "tyousi_hutuu" value = "普通" class="form-check-input" @if($info['feeling']==="普通") checked @endif>
+                            <input type="radio" name="feeling" id = "tyousi_hutuu" value = "普通" class="form-check-input" @if($record->feeling==="普通") checked @endif>
                             <label for = "tyousi_hutuu" class="btn btn-outline-primary  btn-block check"><img src="{{asset('img/health-questionnaire/mark_face_smile.png')}}"><p class="h3 text-dark">ふつう</p></label>
                         </div>
                         <div class="form-check">
-                            <input type="radio" name="info[feeling]" id = "tyousi_warui" value = "悪い" class="form-check-input" @if($info['feeling']==="悪い") checked @endif>
+                            <input type="radio" name="feeling" id = "tyousi_warui" value = "悪い" class="form-check-input" @if($record->feeling==="悪い") checked @endif>
                             <label for = "tyousi_warui" class="btn btn-outline-primary btn-block check"><img src="{{asset('img/health-questionnaire/mark_face_cry.png')}}"><p class="h3 text-dark">わるい</p></label>
                         </div>
                         
@@ -148,7 +149,7 @@
 
                     <div class="tab-pane @if(in_array('taiju', $not_use_items)) d-none @endif" id="5"><!質問5>
                         <span class=h2>体重（kg）</span>
-                        <select name = "info[taiju]" id="taiju" class="btn btn-outline-secondary form-control" value="{{$base->info()->info['taiju']}}">
+                        <select name = "info[taiju]" id="taiju" class="btn btn-outline-secondary form-control" value="{{$record->taiju}}">
                             @php
                                 $val = 30;
                                 for(;$val < 200;){
@@ -309,7 +310,7 @@
                             };
                             $('#questionnaire_body img').css({"pointer-events":"none"});
                             $('#questionnaire_body input,#questionnaire_body select').change(function(){
-                            var jstyousi = $('[name="info[feeling]"]:checked').val();//1
+                            var jstyousi = $('[name="feeling"]:checked').val();//1
                             var idtyousi = document.getElementById("tyousi_out");
                             idtyousi.innerHTML = jstyousi;
                             var jssyokuyoku = $('[name="info[syokuyoku]"]:checked').val();//2

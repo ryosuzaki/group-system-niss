@@ -111,5 +111,4 @@ class HealthRecord extends Model
     public function getInfo(){
         return $this->info()->first();
     }
-
 }
