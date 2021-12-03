@@ -13,9 +13,18 @@ class Rescue extends Model
 {
     protected $table = 'group_system_niss_rescues';
 
+    //
+    protected $guarded = ['id'];
+
+    //
     protected $dates = [
         'created_at',
         'updated_at'
+    ];
+
+    //
+    protected $attributes = [
+        'rescue'=>'unrescue',
     ];
 
 
@@ -45,6 +54,13 @@ class Rescue extends Model
      */
     public function rescuer(){
         return $this->belongsTo(User::class);
+    }
+
+    /**
+     * 
+     */
+    public function getRescuer(){
+        return $this->rescuer()->first();
     }
 
     /**

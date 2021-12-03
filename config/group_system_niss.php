@@ -4,17 +4,28 @@ use App\Models\Group\Group;
 use App\User;
 use GroupSystem\Niss\Models\Evacuation;
 use GroupSystem\Niss\Models\HealthRecord;
+use GroupSystem\Niss\Models\Rescue;
 
 return [
     "name"=>"niss",
 
     'evacuation'=>[
+        'model'=>Evacuation::class,
 
     ],
+
     'rescue'=>[
+        'model'=>Rescue::class,
+
         'rescue'=>'救助中',
         'unrescue'=>'救助者がいません',
         'rescued'=>'救助完了',
+    ],
+
+    'health_record'=>[
+        'model'=>HealthRecord::class,
+
+
     ],
 
     
@@ -46,6 +57,9 @@ return [
                 ],
                 "create"=>[
                     "path"=>"group_system_niss::nursing_home.create",
+                ],
+                "home"=>[
+                    "path"=>"group_system_niss::nursing_home.home",
                 ],
             ],
         ],

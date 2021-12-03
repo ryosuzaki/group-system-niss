@@ -1,11 +1,11 @@
 <div>           
     <div class="form-group">
         <label>検索</label>
-        <input class="form-control" type="text" id="search_in_table{{$base->index}}">
+        <input class="form-control" type="text" id="search_in_table{{$info->index}}">
     </div> 
     <input type="button" class="btn btn-primary btn-block" value="すべて表示" id="button4">
     <br>
-        <div class="card m-0" id="select_row_value{{$base->index}}">
+        <div class="card m-0" id="select_row_value{{$info->index}}">
             <ul class="list-unstyled">
                 <li class="card-text list-unstyled">健康状態アンケート<br>
                     <label><input type="checkbox" id="check11" checked="checked">回答あり</label>
@@ -47,7 +47,7 @@
 </div>
 
 <div class="table-responsive">
-    <table class="table text-nowrap tablesorter result2" id="sorter{{$base->index}}">
+    <table class="table text-nowrap tablesorter result2" id="sorter{{$info->index}}">
         <thead>
         <tr>
             <th>ユーザー名</th>
@@ -71,32 +71,28 @@
             @foreach ($users as $user)
 
             @php
-            $info_base=$user->getInfoBaseByTemplate(5);
+            $record=config("group_system_niss.health_record.model")::findByUserId($user->id);
             @endphp
 
-            @if(!empty($info_base))
-
-            @php
-            $info=$info_base->info();
-            @endphp
+            @if(!empty($record))
 
             <tr>
                 <td>{{$user->name}}</td>
 
-                <td id="time_check2">{{($info->updated_at)}}</td>
-                <td>{{$info->info['feeling']}}</td>
-                <td id="comment_check2">{{$info->info["comment"]}}</td>
-                <td><input type="hidden" value="{{$info->info['taion']}}">{{$info->info["taion"]}} ℃</td>
+                <td id="time_check2">{{($record->updated_at)}}</td>
+                <td>{{$record->feeling}}</td>
+                <td id="comment_check2">{{$record->comment}}</td>
+                <td><input type="hidden" value="{{$record->taion}}">{{$record->taion}} ℃</td>
                 <td id="bad_check">
-                    @foreach($info->info["warui_bui"] as $bui)
+                    @foreach($record->warui_bui as $bui)
                     {{$bui}}
                     @endforeach
                 </td>
-                <td>{{$info->info["syokuyoku"]}}</td>
-                <td>{{$info->info["otuzi"]}}</td>
-                <td id="weight_check">{{$info->info["taiju"]}} kg</td>
-                <td>{{$info->info["ketuatu_saikou"]}} mmHg</td>
-                <td>{{$info->info["ketuatu_saitei"]}} mmHg</td>
+                <td>{{$record->syokuyoku}}</td>
+                <td>{{$record->otuzi}}</td>
+                <td id="weight_check">{{$record->taiju}} kg</td>
+                <td>{{$record->ketuatu_saikou}} mmHg</td>
+                <td>{{$record->ketuatu_saitei}} mmHg</td>
             </tr>
             @endif
 
@@ -107,7 +103,7 @@
 
 <script>
     $(function() { 
-        $("#sorter{{$base->index}}").tablesorter();
+        $("#sorter{{$info->index}}").tablesorter();
         //一致した行のみ表示
         function search_in_table(input_id,table_id){
             $("#"+input_id).keyup(function(){
@@ -127,7 +123,7 @@
         }
         //
         $(document).ready(function() { 
-            search_in_table("search_in_table{{$base->index}}","sorter{{$base->index}}");
+            search_in_table("search_in_table{{$info->index}}","sorter{{$info->index}}");
         });
     });
 </script>
@@ -146,7 +142,7 @@
 
 	  
 		//検索内容を取って判別する関数
-	    $('#select_row_value{{$base->index}}').find('input[type="checkbox"]').change(function(){
+	    $('#select_row_value{{$info->index}}').find('input[type="checkbox"]').change(function(){
 			var re = new RegExp($('#search2').val());   //テキストに入れた文字を取得
 
 					  //ここから次のfunctionまでは一つの質問でチェックの有無が違う場合にcheck_arrayにその添字を格納しているもの
@@ -343,7 +339,7 @@
 	  
 		  //全て表示のボタン↓
 		$('#button4').bind("click",function(){
-            $("#search_in_table{{$base->index}}").val('');
+            $("#search_in_table{{$info->index}}").val('');
 			$('#search2').val('');
 			$('.result2 tr').show();
 			var s = 0;

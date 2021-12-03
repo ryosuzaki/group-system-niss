@@ -1,11 +1,11 @@
 <div>
     <div class="form-group">
         <label>検索</label>
-        <input class="form-control" type="text" id="search_in_table{{$base->index}}">
+        <input class="form-control" type="text" id="search_in_table{{$info->index}}">
     </div>
     <input type="button" class="btn btn-primary btn-block" value="すべて表示" id="button2">
     <br>
-        <div class="card m-0" id="selct_row_value{{$base->index}}">
+        <div class="card m-0" id="selct_row_value{{$info->index}}">
             <ul class="list-unstyled">
                 <li class="card-text list-unstyled">避難状況アンケート<br>
                     <label><input type="checkbox" id="check3" checked="checked">回答あり</label>
@@ -47,7 +47,7 @@
 			dataType: 'html',
 		})
 		.done((response)=>{
-			$("#embed_info{{$base->index}}").html(response);
+			$("#embed_info{{$info->index}}").html(response);
 		})
 		.fail((error)=>{
 			console.log(error)
@@ -56,7 +56,7 @@
 	</script>
 
 
-    <table class="table text-nowrap tablesorter result1" id="sorter{{$base->index}}">
+    <table class="table text-nowrap tablesorter result1" id="sorter{{$info->index}}">
         <thead>
         <tr>
             <th>ユーザー名</th>
@@ -77,43 +77,41 @@
             @foreach ($users as $user)
 
 				@php
-				$info_base=$user->getInfoBaseByTemplate(config('kaigohack.rescue.user_rescue_info_template_id'));
+				$evacuation=config("group_system_niss.evacuation.model")::findByUserId($user->id);
+				$rescue_model=config("group_system_niss.rescue.model")::findByUserId($user->id);
 				@endphp
 
-				@if(!empty($info_base))
+				@if(!empty($evacuation))
 
 				<script>
 				$(function(){
 					$("#rescue{{$user->id}}").click(function(){
-						embed_table("{{route('group.user.rescue',[$group->id,$user->id])}}");
+						embed_table("{{route('niss.rescue.rescue',[$group->id,$user->id])}}");
 					});
 					$("#rescued{{$user->id}}").click(function(){
-						embed_table("{{route('group.user.rescued',[$group->id,$user->id])}}");
+						embed_table("{{route('niss.rescue.rescued',[$group->id,$user->id])}}");
 					});
 					$("#unrescue{{$user->id}}").click(function(){
-						embed_table("{{route('group.user.unrescue',[$group->id,$user->id])}}");
+						embed_table("{{route('niss.rescue.unrescue',[$group->id,$user->id])}}");
 					});
 					$("#reverse_rescue{{$user->id}}").click(function(){
-						embed_table("{{route('group.user.reverse_rescue',[$group->id,$user->id])}}");
+						embed_table("{{route('niss.rescue.rescue',[$group->id,$user->id])}}");
 					});
 				});
 				</script>
 
 				@php
-				$info=$info_base->info();
-				$rescue=$info->info['rescue'];
-				$rescuer=$info->info['rescuer'];
-				$rescue_group=$info->info['group'];
+				$rescue=$rescue_model->rescue;
+				$rescuer=$rescue_model->getRescuer();
 				@endphp
 				<tr>
 					<td>{{$user->name}}</td>
-					
-					<td id="time_check">{{$info->info['last_answer']}}</td>
-					<td>{{$info->info['evacuation']}}</td>
+					<td id="time_check">{{$rescue_model->updated_at}}</td>
+					<td>{{$evacuation->evacuation}}</td>
 					<td>
-					@if($rescue==config('kaigohack.rescue.rescue'))
-						<a href="{{route('group.show',$rescue_group->id)}}">{{$rescue_group->name}}</a>の{{$rescuer->name}}が救助中
-						@if($rescue_group->id==$group->id&&$rescuer->id==Auth::id())
+					@if($rescue=="resuce")
+						{{$rescuer->name}}が救助中
+						@if($rescuer->id==Auth::id())
 						<a class="btn btn-danger btn-sm text-white m-0" id="unrescue{{$user->id}}"><i class="material-icons">close</i> 救助をやめる</a>
 						<button type="button" data-toggle="modal" data-target="#rescued_modal{{$user->id}}" class="btn btn-success btn-sm text-white m-0"><i class="material-icons">done</i> 救助を完了</button>
 						<div class="modal fade" id="rescued_modal{{$user->id}}" tabindex="-1" role="dialog" aria-labelledby="rescuedLabel" aria-hidden="true">
@@ -130,17 +128,17 @@
 							</div>
 						</div>
 						@endif
-					@elseif($rescue==config('kaigohack.rescue.unrescue'))
+					@elseif($rescue=="unrescue"))
 					<a class="btn btn-warning btn-sm text-white m-0" id="rescue{{$user->id}}">救助に向かう</a>
-					@elseif($rescue==config('kaigohack.rescue.rescued'))
-					<a href="{{route('group.show',$rescue_group->id)}}">{{$rescue_group->name}}</a>の{{$rescuer->name}}が救助済み
+					@elseif($rescue=="rescued"))
+						{{$rescuer->name}}が救助済み
 						@if($rescuer->id==Auth::id())
 						<a class="btn btn-default btn-sm text-white m-0" id="reverse_rescue{{$user->id}}">元に戻す</a>
 						@endif
 					@endif
 					</td>
 					<td id="where_check"><a href="#">マップで表示</a></td>
-					<td id="comment_check">{{$info->info['comment']}}</td>
+					<td id="comment_check">{{$evacuation->comment}}</td>
 				</tr>
 				@endif
             @endforeach
@@ -151,7 +149,7 @@
 
 <script>
 	$(document).ready(function() { 
-		$("#sorter{{$base->index}}").tablesorter();
+		$("#sorter{{$info->index}}").tablesorter();
 	});
 </script>
 <script>
@@ -199,7 +197,7 @@
 		});
 	}
     $(document).ready(function() { 
-        search_in_table("search_in_table{{$base->index}}","sorter{{$base->index}}");
+        search_in_table("search_in_table{{$info->index}}","sorter{{$info->index}}");
     });
 </script>
 <script>
@@ -218,7 +216,7 @@
 	var l = 0;
 	  
 			//検索内容を取って判別する関数
-            $('#selct_row_value{{$base->index}}').find('input[type="checkbox"]').change(function(){
+            $('#selct_row_value{{$info->index}}').find('input[type="checkbox"]').change(function(){
 				var re = new RegExp($('#search1').val());   //テキストに入れた文字を取得
 	  
 					  //ここから次のfunctionまでは一つの質問でチェックの有無が違う場合にcheck_arrayにその添字を格納しているもの
@@ -391,7 +389,7 @@
 	  
 		  //全て表示のボタン↓
 		$('#button2').bind("click",function(){
-            $("#search_in_table{{$base->index}}").val('');
+            $("#search_in_table{{$info->index}}").val('');
 			$('#search1').val('');
 			$('.result1 tr').show();
 			var s = 0;

@@ -13,6 +13,10 @@ class Evacuation extends Model
 {
     protected $table = 'group_system_niss_evacuations';
 
+    //
+    protected $guarded = ['id'];
+
+    //
     protected $dates = [
         'created_at',
         'updated_at'
@@ -30,16 +34,6 @@ class Evacuation extends Model
             "user_id"=>$info->model()->first()->id,
             "info_id"=>$info->id,
         ]);
-    }
-
-    /**
-     * 
-     */
-    public function update(array $attributes){
-        return $this->fill([
-            'evacuation'=>$request['evacuation'],
-            'comment'=>$request['comment'],
-        ])->save();
     }
 
     /**
