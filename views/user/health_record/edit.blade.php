@@ -70,17 +70,17 @@
 
                     <div class="tab-pane @if(in_array('syokuyoku', $not_use_items)) d-none @endif" id="2"> <!質問２>
                         <span class=h2>食欲</span>
-                        <input type="hidden" name="info[syokuyoku]" value="">
+                        <input type="hidden" name="syokuyoku" value="">
                         <div class="form-check">
-                          <input type="radio" class="form-check-input" id="syokuyoku_yoi" name="info[syokuyoku]" value="良い" @if($info['syokuyoku']==="良い") checked @endif>
+                          <input type="radio" class="form-check-input" id="syokuyoku_yoi" name="syokuyoku" value="良い" @if($record->syokuyoku==="良い") checked @endif>
                           <label class="btn btn-outline-primary  btn-block check" for="syokuyoku_yoi"><img src="{{asset('img/health-questionnaire/mark_face_laugh.png')}}"><p class="h3 text-dark">よい</p></label>
                         </div>
                         <div class="form-check"> <! 12493行目>
-                          <input type = "radio" class="form-check-input" name="info[syokuyoku]" id = "syokuyoku_hutuu" value="普通" @if($info['syokuyoku']==="普通") checked @endif>
+                          <input type = "radio" class="form-check-input" name="syokuyoku" id = "syokuyoku_hutuu" value="普通" @if($record->syokuyoku==="普通") checked @endif>
                           <label  class="btn btn-outline-primary  btn-block check" for = "syokuyoku_hutuu"><img src="{{asset('img/health-questionnaire/mark_face_smile.png')}}"><p class="h3 text-dark">ふつう</p></label>
                         </div>
                         <div class="form-check">
-                            <input type = "radio" class="form-check-input" name="info[syokuyoku]" id = "syokuyoku_warui" value="悪い" @if($info['syokuyoku']==="悪い") checked @endif>
+                            <input type = "radio" class="form-check-input" name="syokuyoku" id = "syokuyoku_warui" value="悪い" @if($record->syokuyoku==="悪い") checked @endif>
                             <label for = "syokuyoku_warui" class="btn btn-outline-primary  btn-block check"><img src="{{asset('img/health-questionnaire/mark_face_cry.png')}}"><p class="h3 text-dark">わるい</p></label>
                         </div>
 
@@ -95,21 +95,21 @@
 
                     <div class="tab-pane @if(in_array('otuzi', $not_use_items)) d-none @endif" id="3"><!質問３>
                         <span class=h2>お通じ</span>
-                        <input type="hidden" name="info[otuzi]" value="">
+                        <input type="hidden" name="otuzi" value="">
                         <div class="form-check">
-                          <input type = "radio" name = "info[otuzi]" id= "otuzi_katai" value = "固い" class="form-check-input" @if($info['otuzi']==="固い") checked @endif>
+                          <input type = "radio" name = "otuzi" id= "otuzi_katai" value = "固い" class="form-check-input" @if($record->otuzi==="固い") checked @endif>
                           <label for = "otuzi_katai" class="btn btn-outline-primary  btn-block check"><img src="{{asset('img/health-questionnaire/コロコロ(かたい).png')}}" width="200"><p class="h3 text-dark">かたい</p></label>
                         </div>
                         <div class="form-check">
-                            <input type = "radio" name = "info[otuzi]" id="otuzi_hutuu" value = "普通" class="form-check-input" @if($info['otuzi']==="普通") checked @endif>
+                            <input type = "radio" name = "otuzi" id="otuzi_hutuu" value = "普通" class="form-check-input" @if($record->otuzi==="普通") checked @endif>
                             <label for = "otuzi_hutuu" class="btn btn-outline-primary  btn-block check"><img src="{{asset('img/health-questionnaire/バナナ状(ふつう).png')}}" width="200"><p class="h3 text-dark">ふつう</p></label>
                         </div>
                         <div class="form-check">
-                            <input type = "radio" name = "info[otuzi]" id = "otuzi_katati_nai" value = "形がない" class="form-check-input" @if($info['otuzi']==="形がない") checked @endif>
+                            <input type = "radio" name = "otuzi" id = "otuzi_katati_nai" value = "形がない" class="form-check-input" @if($record->otuzi==="形がない") checked @endif>
                             <label for = "otuzi_katati_nai" class="btn btn-outline-primary  btn-block check"><img src="{{asset('img/health-questionnaire/ビシャビシャ(形がない).png')}}" width="200"><p class="h3 text-dark">形がない</p></label>
                         </div>
                         <div class="form-check">
-                            <input type = "radio" name = "info[otuzi]" id = "otuzi_denai" value = "出ない" class="form-check-input" @if($info['otuzi']==="出ない") checked @endif>
+                            <input type = "radio" name = "otuzi" id = "otuzi_denai" value = "出ない" class="form-check-input" @if($record->otuzi==="出ない") checked @endif>
                             <label for = "otuzi_denai" class="btn btn-outline-primary  btn-block check"><img src="{{asset('img/health-questionnaire/でない.png')}}" width="200"><p class="h3 text-dark">でない</p></label>
                         </div>
 
@@ -124,17 +124,17 @@
 
                     <div class="tab-pane @if(in_array('taion', $not_use_items)) d-none @endif" id="4"><!質問4>
                         <span class=h2>体温（℃）</span>
-                        <select id = "taion" name = "info[taion]" class="btn btn-outline-secondary form-control" value="{{$base->info()->info['taion']}}">
+                        <select id = "taion" name = "taion" class="btn btn-outline-secondary form-control" value="{{$record->taion}}">
                             <option value="">測っていない</option>
-                            <option value="35.5℃より低い" @if($info['taion']==="35.5℃より低い") selected @endif>35.5℃より低い</option>
-                            <option value="35.5~36.0" @if($info['taion']==="35.5~36.0") selected @endif>35.5~36.0</option>
-                            <option value="36.1~36.5" @if($info['taion']==="36.1~36.5") selected @endif>36.1~36.5</option>
-                            <option value="36.6~37.0" @if($info['taion']==="36.6~37.0") selected @endif>36.6~37.0</option>
-                            <option value="37.1~37.5" @if($info['taion']==="37.1~37.5") selected @endif>37.1~37.5</option>
-                            <option value="37.6~38.0" @if($info['taion']==="37.6~38.0") selected @endif>37.6~38.0</option>
-                            <option value="38.1~38.5" @if($info['taion']==="38.1~38.5") selected @endif>38.1~38.5</option>
-                            <option value="38.6~39.0" @if($info['taion']==="38.6~39.0") selected @endif>38.6~39.0</option>
-                            <option value="39.0℃より高い" @if($info['taion']==="39.0℃より高い") selected @endif>39.0℃より高い</option>
+                            <option value="35.5℃より低い" @if($record->taion==="35.5℃より低い") selected @endif>35.5℃より低い</option>
+                            <option value="35.5~36.0" @if($record->taion==="35.5~36.0") selected @endif>35.5~36.0</option>
+                            <option value="36.1~36.5" @if($record->taion==="36.1~36.5") selected @endif>36.1~36.5</option>
+                            <option value="36.6~37.0" @if($record->taion==="36.6~37.0") selected @endif>36.6~37.0</option>
+                            <option value="37.1~37.5" @if($record->taion==="37.1~37.5") selected @endif>37.1~37.5</option>
+                            <option value="37.6~38.0" @if($record->taion==="37.6~38.0") selected @endif>37.6~38.0</option>
+                            <option value="38.1~38.5" @if($record->taion==="38.1~38.5") selected @endif>38.1~38.5</option>
+                            <option value="38.6~39.0" @if($record->taion==="38.6~39.0") selected @endif>38.6~39.0</option>
+                            <option value="39.0℃より高い" @if($record->taion==="39.0℃より高い") selected @endif>39.0℃より高い</option>
                         </select>
                         
                         <div>
@@ -149,13 +149,13 @@
 
                     <div class="tab-pane @if(in_array('taiju', $not_use_items)) d-none @endif" id="5"><!質問5>
                         <span class=h2>体重（kg）</span>
-                        <select name = "info[taiju]" id="taiju" class="btn btn-outline-secondary form-control" value="{{$record->taiju}}">
+                        <select name = "taiju" id="taiju" class="btn btn-outline-secondary form-control" value="{{$record->taiju}}">
                             @php
                                 $val = 30;
                                 for(;$val < 200;){
-                                    if($info['taiju'] == $val){
+                                    if($record->taiju == $val){
                                         echo "<option value='$val' selected>$val</option>";
-                                    }elseif($info['taiju'] == "" && $val == 65){
+                                    }elseif($record->taiju == "" && $val == 65){
                                         echo "<option value='$val'>$val</option>";
                                         echo "<option value='' selected>回答無し</option>";
                                     }else{
@@ -175,13 +175,13 @@
 
                     <div class="tab-pane @if(in_array('ketuatu', $not_use_items)) d-none @endif" id="6"><!質問6>
                         <span class=h2>血圧（mmHg）</span>
-                        <select name = "info[ketuatu_saikou]" id="ketuatu_saikou" class="btn btn-outline-secondary form-control" placeholder="最高" value="{{$base->info()->info['ketuatu_saikou']}}">
+                        <select name = "ketuatu_saikou" id="ketuatu_saikou" class="btn btn-outline-secondary form-control" placeholder="最高" value="{{$record->ketuatu_saikou}}">
                             @php
                                 $val = 30;
                                 for(;$val < 200;){
-                                    if($info['ketuatu_saikou'] == $val){
+                                    if($record->ketuatu_saikou == $val){
                                         echo "<option value='$val' selected>$val</option>";
-                                    }elseif($info['ketuatu_saikou'] == "" && $val == 120){
+                                    }elseif($record->ketuatu_saikou == "" && $val == 120){
                                         echo "<option value='$val'>$val</option>";
                                         echo "<option value='' selected>回答無し</option>";
                                     }else{
@@ -191,13 +191,13 @@
                                 }
                             @endphp
                         </select>
-                        <select name = "info[ketuatu_saitei]" id="ketuatu_saitei" class="btn btn-outline-secondary form-control" placeholder="最低" value="{{$base->info()->info['ketuatu_saitei']}}">
+                        <select name = "ketuatu_saitei" id="ketuatu_saitei" class="btn btn-outline-secondary form-control" placeholder="最低" value="{{$record->ketuatu_saitei}}">
                             @php
                                 $val = 30;
                                 for(;$val < 200;){
-                                    if($info['ketuatu_saitei'] == $val){
+                                    if($record->ketuatu_saitei == $val){
                                         echo "<option value='$val' selected>$val</option>";
-                                    }elseif($info['ketuatu_saitei'] == "" && $val == 80){
+                                    }elseif($record->ketuatu_saitei == "" && $val == 80){
                                         echo "<option value='$val'>$val</option>";
                                         echo "<option value='' selected>回答無し</option>";
                                     }else{
@@ -217,44 +217,44 @@
 
                     <div class="tab-pane @if(in_array('warui_bui', $not_use_items)) d-none @endif" id="7"><!質問7>
                         <span class=h2>症状</span>
-                        <input type="hidden" name="info[warui_bui][]" value="">
+                        <input type="hidden" name="warui_bui[]" value="">
                         <div class="form-check">
-                            <input type = "checkbox" id = "zutuu" name = "info[warui_bui][]" value = "頭痛" class="form-check-input" @if(in_array("頭痛",$info['warui_bui'])) checked @endif>
+                            <input type = "checkbox" id = "zutuu" name = "warui_bui[]" value = "頭痛" class="form-check-input" @if(in_array("頭痛",$record->warui_bui[])) checked @endif>
                             <label for="zutuu" class="btn btn-outline-primary  btn-block check"><img src="{{asset('img/health-questionnaire/症状/頭痛.png')}}" width="100%"  height="100%"></label>
                         </div>
 
                         <div class="form-check">
-                            <input type = "checkbox" id="hanamizu" name = "info[warui_bui][]"  value = "鼻水"  class="form-check-input" @if(in_array("鼻水",$info['warui_bui'])) checked @endif>
+                            <input type = "checkbox" id="hanamizu" name = "warui_bui[]"  value = "鼻水"  class="form-check-input" @if(in_array("鼻水",$record->warui_bui[])) checked @endif>
                             <label for="hanamizu" class="btn btn-outline-primary  btn-block check"><img src="{{asset('img/health-questionnaire/症状/鼻水・鼻づまり.png')}}"  width="100%" height="100%"></label>
                         </div>
 
                         <div class="form-check">
-                            <input type = "checkbox" id="nodono_itami" name = "info[warui_bui][]" value = "のどの痛み" class="form-check-input" @if(in_array("のどの痛み",$info['warui_bui'])) checked @endif>
+                            <input type = "checkbox" id="nodono_itami" name = "warui_bui[]" value = "のどの痛み" class="form-check-input" @if(in_array("のどの痛み",$record->warui_bui[])) checked @endif>
                             <label for="nodono_itami" class="btn btn-outline-primary  btn-block check"><img src="{{asset('img/health-questionnaire/症状/のどの痛み.png')}}" width="100%"  height="100%"></label>
                         </div>
 
                         <div class="form-check">
-                            <input type = "checkbox" id="darui" name = "warui_bui[]" value = "だるい" class="form-check-input" @if(in_array("だるい",$info['warui_bui'])) checked @endif>
+                            <input type = "checkbox" id="darui" name = "warui_bui[]" value = "だるい" class="form-check-input" @if(in_array("だるい",$record->warui_bui[])) checked @endif>
                             <label for="darui" class="btn btn-outline-primary  btn-block check"><img src="{{asset('img/health-questionnaire/症状/だるい.png')}}" width="100%"  height="100%"></label>
                         </div>
 
                         <div class="form-check">
-                            <input type = "checkbox" id="karada_itai" name = "info[warui_bui][]" value = "関節や体がいたい" class="form-check-input" @if(in_array("関節や体がいたい",$info['warui_bui'])) checked @endif>
+                            <input type = "checkbox" id="karada_itai" name = "warui_bui[]" value = "関節や体がいたい" class="form-check-input" @if(in_array("関節や体がいたい",$record->warui_bui[])) checked @endif>
                             <label for="karada_itai" class="btn btn-outline-primary  btn-block check"><img src="{{asset('img/health-questionnaire/症状/関節やからだが痛い.png')}}"  width="100%"  height="100%"></label>
                         </div>
 
                         <div class="form-check">
-                            <input type = "checkbox" id="onakaga_itai" name = "info[warui_bui][]" value = "お腹" class="form-check-input" @if(in_array("お腹",$info['warui_bui'])) checked @endif>
+                            <input type = "checkbox" id="onakaga_itai" name = "warui_bui[]" value = "お腹" class="form-check-input" @if(in_array("お腹",$record->warui_bui[])) checked @endif>
                             <label for="onakaga_itai" class="btn btn-outline-primary  btn-block check"><img src="{{asset('img/health-questionnaire/症状/お腹が痛い.png')}}"  width="100%"  height="100%"></label>
                         </div>
 
                         <div class="form-check">
-                            <input type = "checkbox" id="geri" name = "info[warui_bui][]" value = "下痢" class="form-check-input" @if(in_array("下痢",$info['warui_bui'])) checked @endif>
+                            <input type = "checkbox" id="geri" name = "warui_bui[]" value = "下痢" class="form-check-input" @if(in_array("下痢",$record->warui_bui[])) checked @endif>
                             <label for="geri" class="btn btn-outline-primary  btn-block check"><img src="{{asset('img/health-questionnaire/症状/下痢.png')}}" width="100%"  height="100%"></label>
                         </div>
 
                         <div class="form-check">
-                            <input type = "checkbox" id="hakike_outo" name = "info[warui_bui][]" value = "吐き気" class="form-check-input" @if(in_array("吐き気",$info['warui_bui'])) checked @endif>
+                            <input type = "checkbox" id="hakike_outo" name = "warui_bui[]" value = "吐き気" class="form-check-input" @if(in_array("吐き気",$record->warui_bui[])) checked @endif>
                             <label for="hakike_outo" class="btn btn-outline-primary  btn-block check"><img src="{{asset('img/health-questionnaire/症状/吐き気・嘔吐.png')}}"  width="100%"  height="100%"></label>
                         </div>
 
@@ -269,7 +269,7 @@
 
                     <div class="tab-pane @if(in_array('comment', $not_use_items)) d-none @endif" id="8">
                         <p class="h2">コメント</p>
-                        <textarea class="form-control" id="comment" name="info[comment]" rows="5">{{$info['comment']}}</textarea>
+                        <textarea class="form-control" id="comment" name="comment" rows="5">{{$record->comment}}</textarea>
                         
                         <div>
                             <button type="button" class="btn btn-primary change_prev_pill_tab mt-4">前の質問へ</button>
@@ -313,10 +313,10 @@
                             var jstyousi = $('[name="feeling"]:checked').val();//1
                             var idtyousi = document.getElementById("tyousi_out");
                             idtyousi.innerHTML = jstyousi;
-                            var jssyokuyoku = $('[name="info[syokuyoku]"]:checked').val();//2
+                            var jssyokuyoku = $('[name="syokuyoku"]:checked').val();//2
                             var idsyokuyoku = document.getElementById("syokuyoku_out");
                             idsyokuyoku.innerHTML = jssyokuyoku;
-                            var jsotuzi = $('[name="info[otuzi]"]:checked').val();//3
+                            var jsotuzi = $('[name="otuzi"]:checked').val();//3
                             var idotuzi = document.getElementById("otuzi_out");
                             idotuzi.innerHTML = jsotuzi;
                             var jstaion = $('#taion').val(); //4体温
@@ -329,7 +329,7 @@
                             var jsketuatu_saitei = $('#ketuatu_saitei').val();
                             var idketuatu = document.getElementById("ketuatu_out");
                             idketuatu.innerHTML = '最高：' + jsketuatu_saikou + '<br>' + '最低：' +jsketuatu_saitei;
-                            var jswarui_bui = $('[name="info[warui_bui][]"]:checked').map(function(){
+                            var jswarui_bui = $('[name="warui_bui[]"]:checked').map(function(){
                                 return $(this).val();
                             })
                             var idwarui_bui = document.getElementById("warui_bui_out");
