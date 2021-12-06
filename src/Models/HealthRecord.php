@@ -68,6 +68,11 @@ class HealthRecord extends Model
      * 
      */
     public function updateRecord(array $attributes){
+        foreach($attributes as $key=>$item){
+            if(!isset($item)){
+                unset($attributes[$key]);
+            }
+        }
         $record=$this->getTodayRecord();
         return $record->fill($attributes)->save();
     }

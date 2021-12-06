@@ -22,6 +22,8 @@ Route::name('niss.')->prefix('niss')->namespace('GroupSystem\Niss\Http\Controlle
 
     Route::name('health_record.')->prefix('health_record')->group(function(){
         Route::put('', 'HealthRecordController@update')->name('update');
+        Route::get('setting/{index}', 'HealthRecordController@setting')->name('setting');
+        Route::put('setting/{index}', 'HealthRecordController@updateSetting')->name('update_setting');
     });
 });
 

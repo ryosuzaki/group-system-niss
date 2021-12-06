@@ -1,5 +1,5 @@
 @php
-$record=GroupSystem\Niss\Models\HealthRecord::findByUserId($user->id);
+$record=config("group_system_niss.health_record.model")::findByUserId($user->id);
 $not_use_items=$info->info["not_use_items"];
 @endphp
 
@@ -115,7 +115,7 @@ $not_use_items=$info->info["not_use_items"];
 
 
 <div class="d-flex">
-    <a class="btn btn-primary btn-block mx-auto" href="{{route('user.questionnaire.setting_form',$base->id)}}"><i class="material-icons">settings</i> アンケート設定</a>
+    <a class="btn btn-primary btn-block mx-auto" href="{{route('niss.health_record.setting',$info->index)}}"><i class="material-icons">settings</i> アンケート設定</a>
 </div>
 
 <script>    //カレンダーの処理

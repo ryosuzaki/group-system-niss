@@ -2,7 +2,7 @@
     @csrf
     @method('PUT')
     @php
-    $record=GroupSystem\Niss\Models\HealthRecord::findByUserId(Auth::id());
+    $record=config("group_system_niss.health_record.model")::findByUserId(Auth::id());
     $not_use_items=$info->info["not_use_items"];
     
     @endphp
@@ -218,7 +218,6 @@
 
                     <div class="tab-pane @if(in_array('warui_bui', $not_use_items)) d-none @endif" id="7"><!質問7>
                         <span class=h2>症状</span>
-                        <input type="hidden" name="warui_bui[]" value="">
                         <div class="form-check">
                             <input type = "checkbox" id = "zutuu" name = "warui_bui[]" value = "頭痛" class="form-check-input" @if(in_array("頭痛",$record->warui_bui)) checked @endif>
                             <label for="zutuu" class="btn btn-outline-primary  btn-block check"><img src="{{asset('img/health-questionnaire/症状/頭痛.png')}}" width="100%"  height="100%"></label>
