@@ -92,7 +92,7 @@ $not_use_items=$info->info["not_use_items"];
             <div class="card-body">
                 <h4>症状<span style="float:right">＞</span></h4>
                 <div>                
-                    @foreach($info["warui_bui"] as $bui)
+                    @foreach($record->warui_bui as $bui)
                     {{$bui}}
                     @endforeach
                 </div>
@@ -106,7 +106,7 @@ $not_use_items=$info->info["not_use_items"];
             <div class="card-body">
                 <h4>コメント<span style="float:right">＞</span></h4>
                 <div>                
-                {{$info["comment"]}}
+                {{$record->comment}}
                 </div>
             </div>
         </div>
@@ -138,12 +138,12 @@ $not_use_items=$info->info["not_use_items"];
         var weight_ary = [""];
         var blood_ary = [""];
         var temp_ary = [""];
-        condition_ary[0] = "{{$info['feeling']}}";
-        food_ary[0] = "{{$info['syokuyoku']}}";
-        through_ary[0] = "{{$info['otuzi']}}";
-        weight_ary[0] = "{{$info['taiju']}}";
-        blood_ary[0] = "{{$info['ketuatu_saikou']}}/{{$info['ketuatu_saitei']}}";
-        temp_ary[0] = "{{$info['taion']}}"
+        condition_ary[0] = "{{$record->feeling}}";
+        food_ary[0] = "{{$record->syokuyoku}}";
+        through_ary[0] = "{{$record->otuzi}}";
+        weight_ary[0] = "{{$record->taiju}}";
+        blood_ary[0] = "{{$record->ketuatu_saikou}}/{{$record->ketuatu_saitei}}";
+        temp_ary[0] = "{{$record->taion}}"
         condition();
         food();
         through();
