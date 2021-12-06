@@ -6,7 +6,7 @@
     <div class="card-body">
         <h3 class="text-center mb-4">健康記録の設定</h3>
 
-        <form method="POST" action="{{ route('niss.health_record.update_setting',$info->index) }}">
+        <form method="POST" action="{{ route('niss.health_record.update_setting') }}">
             @csrf
             @method('PUT')
 

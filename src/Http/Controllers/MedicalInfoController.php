@@ -1,12 +1,12 @@
 <?php
 
-namespace GroupSystem\Sample\Http\Controllers;
+namespace GroupSystem\Niss\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 
 use GroupSystem\Sample\Models\Sample;
 
-class SampleController extends Controller
+class MedicalInfoController extends Controller
 {   
     //
     public function index()
