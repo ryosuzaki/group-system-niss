@@ -37,13 +37,11 @@ class HealthRecord extends Model
     
     public static function create(array $attributes = [])
     {
-        $model = static::query()->create($attributes);
-
         if(!isset($attributes["warui_bui"])){
-            $model->warui_bui=[];
-            $model->save();
+            $attributes["warui_bui"]=[];
         }
-
+        
+        $model = static::query()->create($attributes);
         return $model;
     }
     
