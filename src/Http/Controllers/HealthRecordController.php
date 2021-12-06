@@ -42,27 +42,31 @@ class HealthRecordController extends Controller
     /**
      * 
      */
-    public function setting(int $index){
+    public function setting(){
         $user=Auth::user();
-        $info=$user->getInfoByIndex($index);
-        return view('group_system_niss::user.health_record.setting')->with(["user"=>$user,'info'=>$info,'not_use_items'=>$info->info["not_use_items"]]);
+        $record=HealthRecord::findByUserId($user->id);
+        $info=$record->getInfo();
+        return view('group_system_niss::user.health_record.setting')->with(["user"=>$user,"record"=>$record,'info'=>$info,'not_use_items'=>$info->info["not_use_items"]]);
     }
 
     /**
      * 
      */
-    public function updateSetting(Request $request,int $index){
+    public function updateSetting(Request $request){
         $validator = Validator::make($request->all(),[
             
         ]);
         if ($validator->fails()) {
             return back()->withErrors($validator)->withInput();
         }
+        //
+        if(!isset($request->not_use_items)){
+            $request->not_use_items=[];
+        }
         $user=Auth::user();
-        $info=$user->getInfoByIndex($index);
-        $info->partlyUpdateInfo([
-            'not_use_items'=>$request->not_use_items,
-        ]);
+        $record=HealthRecord::findByUserId($user->id);
+        $record->not_use_items=$request->not_use_items;
+        $record->save();
         return redirect()->route('user.show');
     }
 }

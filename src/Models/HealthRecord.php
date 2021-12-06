@@ -50,8 +50,8 @@ class HealthRecord extends Model
         return $this->getInfo()->info["not_use_items"];
     }
     //
-    public function setNotUseItemsAttribute(array $value){
-        return $this->getInfo()->partlyUpdateInfo(["not_use_items"=>$value]);
+    public function setNotUseItemsAttribute(array $items=[]){
+        return $this->getInfo()->partlyUpdateInfo(["not_use_items"=>$items]);
     }
 
     /**
