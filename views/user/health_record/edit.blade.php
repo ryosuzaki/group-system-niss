@@ -215,46 +215,47 @@
                     </div>
 
 
+
                     <div class="tab-pane @if(in_array('warui_bui', $not_use_items)) d-none @endif" id="7"><!質問7>
                         <span class=h2>症状</span>
                         <input type="hidden" name="warui_bui[]" value="">
                         <div class="form-check">
-                            <input type = "checkbox" id = "zutuu" name = "warui_bui[]" value = "頭痛" class="form-check-input" @if(in_array("頭痛",$record->warui_bui[])) checked @endif>
+                            <input type = "checkbox" id = "zutuu" name = "warui_bui[]" value = "頭痛" class="form-check-input" @if(in_array("頭痛",$record->warui_bui)) checked @endif>
                             <label for="zutuu" class="btn btn-outline-primary  btn-block check"><img src="{{asset('img/health-questionnaire/症状/頭痛.png')}}" width="100%"  height="100%"></label>
                         </div>
 
                         <div class="form-check">
-                            <input type = "checkbox" id="hanamizu" name = "warui_bui[]"  value = "鼻水"  class="form-check-input" @if(in_array("鼻水",$record->warui_bui[])) checked @endif>
+                            <input type = "checkbox" id="hanamizu" name = "warui_bui[]"  value = "鼻水"  class="form-check-input" @if(in_array("鼻水",$record->warui_bui)) checked @endif>
                             <label for="hanamizu" class="btn btn-outline-primary  btn-block check"><img src="{{asset('img/health-questionnaire/症状/鼻水・鼻づまり.png')}}"  width="100%" height="100%"></label>
                         </div>
 
                         <div class="form-check">
-                            <input type = "checkbox" id="nodono_itami" name = "warui_bui[]" value = "のどの痛み" class="form-check-input" @if(in_array("のどの痛み",$record->warui_bui[])) checked @endif>
+                            <input type = "checkbox" id="nodono_itami" name = "warui_bui[]" value = "のどの痛み" class="form-check-input" @if(in_array("のどの痛み",$record->warui_bui)) checked @endif>
                             <label for="nodono_itami" class="btn btn-outline-primary  btn-block check"><img src="{{asset('img/health-questionnaire/症状/のどの痛み.png')}}" width="100%"  height="100%"></label>
                         </div>
 
                         <div class="form-check">
-                            <input type = "checkbox" id="darui" name = "warui_bui[]" value = "だるい" class="form-check-input" @if(in_array("だるい",$record->warui_bui[])) checked @endif>
+                            <input type = "checkbox" id="darui" name = "warui_bui[]" value = "だるい" class="form-check-input" @if(in_array("だるい",$record->warui_bui)) checked @endif>
                             <label for="darui" class="btn btn-outline-primary  btn-block check"><img src="{{asset('img/health-questionnaire/症状/だるい.png')}}" width="100%"  height="100%"></label>
                         </div>
 
                         <div class="form-check">
-                            <input type = "checkbox" id="karada_itai" name = "warui_bui[]" value = "関節や体がいたい" class="form-check-input" @if(in_array("関節や体がいたい",$record->warui_bui[])) checked @endif>
+                            <input type = "checkbox" id="karada_itai" name = "warui_bui[]" value = "関節や体がいたい" class="form-check-input" @if(in_array("関節や体がいたい",$record->warui_bui)) checked @endif>
                             <label for="karada_itai" class="btn btn-outline-primary  btn-block check"><img src="{{asset('img/health-questionnaire/症状/関節やからだが痛い.png')}}"  width="100%"  height="100%"></label>
                         </div>
 
                         <div class="form-check">
-                            <input type = "checkbox" id="onakaga_itai" name = "warui_bui[]" value = "お腹" class="form-check-input" @if(in_array("お腹",$record->warui_bui[])) checked @endif>
+                            <input type = "checkbox" id="onakaga_itai" name = "warui_bui[]" value = "お腹" class="form-check-input" @if(in_array("お腹",$record->warui_bui)) checked @endif>
                             <label for="onakaga_itai" class="btn btn-outline-primary  btn-block check"><img src="{{asset('img/health-questionnaire/症状/お腹が痛い.png')}}"  width="100%"  height="100%"></label>
                         </div>
 
                         <div class="form-check">
-                            <input type = "checkbox" id="geri" name = "warui_bui[]" value = "下痢" class="form-check-input" @if(in_array("下痢",$record->warui_bui[])) checked @endif>
+                            <input type = "checkbox" id="geri" name = "warui_bui[]" value = "下痢" class="form-check-input" @if(in_array("下痢",$record->warui_bui)) checked @endif>
                             <label for="geri" class="btn btn-outline-primary  btn-block check"><img src="{{asset('img/health-questionnaire/症状/下痢.png')}}" width="100%"  height="100%"></label>
                         </div>
 
                         <div class="form-check">
-                            <input type = "checkbox" id="hakike_outo" name = "warui_bui[]" value = "吐き気" class="form-check-input" @if(in_array("吐き気",$record->warui_bui[])) checked @endif>
+                            <input type = "checkbox" id="hakike_outo" name = "warui_bui[]" value = "吐き気" class="form-check-input" @if(in_array("吐き気",$record->warui_bui)) checked @endif>
                             <label for="hakike_outo" class="btn btn-outline-primary  btn-block check"><img src="{{asset('img/health-questionnaire/症状/吐き気・嘔吐.png')}}"  width="100%"  height="100%"></label>
                         </div>
 

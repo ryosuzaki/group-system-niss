@@ -35,6 +35,18 @@ class HealthRecord extends Model
         'ketuatu_saitei'=>'',
     ];
     
+    public static function create(array $attributes = [])
+    {
+        $model = static::query()->create($attributes);
+
+        if(!isset($attributes["warui_bui"])){
+            $model->warui_bui=[];
+            $model->save();
+        }
+
+        return $model;
+    }
+    
     //
     public function getNotUseItemsAttribute(){
         return $this->getInfo()->info["not_use_items"];
