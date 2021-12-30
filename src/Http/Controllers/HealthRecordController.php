@@ -17,8 +17,16 @@ class HealthRecordController extends Controller
      * 
      */
     public function update(Request $request){
-        $validator = Validator::make($request->all(),[
-            
+       $validator = Validator::make($request->all(),[
+            'feeling' => ['string','nullable','max:2'],
+            'comment' => ['string','nullable','max:255'],
+            'syokuyoku' => ['string','nullable','max:2'],
+            'otuzi' => ['string','nullable','max:3'],
+            'taiju' => ['string','nullable','max:5'],
+            'taion' => ['string','nullable','max:10'],
+            'ketuatu_saitei' => ['string','nullable','max:4'],
+            'ketuatu_saikou' => ['string','nullable','max:4'],
+            'warui_bui' => ['nullable','distinct','max:7'],
         ]);
         if ($validator->fails()) {
             return back()->withErrors($validator)->withInput();
